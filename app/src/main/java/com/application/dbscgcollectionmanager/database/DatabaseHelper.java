@@ -36,10 +36,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         this.context = context;
     }
 
-    public DatabaseHelper(SearchFragment searchFragment) {
-        super((Context) FragmentActivity, DB_NAME, null, DB_VERSION);
-    }
-
     @Override
     public void onCreate(SQLiteDatabase db) {
         //Create the collection DB for the user. Same schema as data.
@@ -49,9 +45,9 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {}
 
-    public Cursor getAllCards(){
-        db = this.getReadableDatabase();
-        c = db.rawQuery("SELECT * FROM " + TABLE, null);
+    public Cursor getAllCards(SQLiteDatabase sqldb){
+
+        c = sqldb.rawQuery("SELECT * FROM " + TABLE, null);
         return c;
     }
 
@@ -102,7 +98,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("IDCARD", "cardId");
-        contentValues.put("NAME", "name");
+        contentValues.put("NAME", "Idriss");
         contentValues.put("TYPE", "type");
         contentValues.put("RARITY", "rarity");
         contentValues.put("COLOR", "color");

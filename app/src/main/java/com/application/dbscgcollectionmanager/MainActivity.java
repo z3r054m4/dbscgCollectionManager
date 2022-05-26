@@ -1,5 +1,6 @@
 package com.application.dbscgcollectionmanager;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -52,9 +53,11 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         //If no data in DB, first time launching app
-        if (this._db.getAllCards().getCount() == 0) {
+        SQLiteDatabase sqldb = _db.getReadableDatabase();
+        if (this._db.getAllCards(sqldb).getCount() == 0) {
             FirstStart();
         }
+
 
     }
 

@@ -1,6 +1,8 @@
 package com.application.dbscgcollectionmanager.ui.search;
 
+import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.application.dbscgcollectionmanager.MainActivity;
+import com.application.dbscgcollectionmanager.R;
 import com.application.dbscgcollectionmanager.database.DatabaseHelper;
 import com.application.dbscgcollectionmanager.databinding.FragmentCollectionBinding;
 
@@ -22,13 +25,15 @@ import java.util.ArrayList;
 
 public class SearchFragment extends Fragment implements AdapterView.OnItemClickListener {
 
+
     //DB Stuff
-    DatabaseHelper _db = new DatabaseHelper(this);
+    DatabaseHelper _db;
 
     //List stuffs
     private ArrayList<String> listItem;
     private ListView cardList;
     private ArrayAdapter adapter;
+    Cursor c = null;
 
     private FragmentCollectionBinding binding;
 
@@ -48,6 +53,7 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemClickL
         this.cardList = new ListView(items);
         this.cardList.setOnItemClickListener(this);*/
 
+        System.out.println("-----" + getContext());
         listAllCards();
 
         return root;
@@ -55,15 +61,16 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemClickL
 
     public void listAllCards() {
 
-        Cursor cursor = _db.getAllCards();
+        _db = new DatabaseHelper(getContext());
+        SQLiteDatabase sqldb = _db.getReadableDatabase();
+        c = _db.getAllCards(sqldb);
 
-        /*
         listItem = new ArrayList<>();
-        while (cursor.moveToNext()) {
-            listItem.add(cursor.getString(1) + "\n" + cursor.getString(2));
+        while (c.moveToNext()) {
+            listItem.add(c.getString(1) + "\n" + c.getString(2));
         }
-        //this.adapter = new ArrayAdapter<>(this, R.layout.row, listItem);
-        this.cardList.setAdapter(adapter);*/
+        this.adapter = new ArrayAdapter(getActivity(), R.layout.row, listItem);
+        this.cardList.setAdapter(adapter);
 
         _db.close();
     }

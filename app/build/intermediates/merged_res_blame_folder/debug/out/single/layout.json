@@ -1,0 +1,42 @@
+[
+    {
+        "merged": "com.application.dbscgcollectionmanager.app-mergeDebugResources-37:/layout/fragment_card.xml",
+        "source": "com.application.dbscgcollectionmanager.app-main-40:/layout/fragment_card.xml"
+    },
+    {
+        "merged": "com.application.dbscgcollectionmanager.app-mergeDebugResources-37:/layout/app_bar_main.xml",
+        "source": "com.application.dbscgcollectionmanager.app-main-40:/layout/app_bar_main.xml"
+    },
+    {
+        "merged": "com.application.dbscgcollectionmanager.app-mergeDebugResources-37:/layout/fragment_search.xml",
+        "source": "com.application.dbscgcollectionmanager.app-main-40:/layout/fragment_search.xml"
+    },
+    {
+        "merged": "com.application.dbscgcollectionmanager.app-mergeDebugResources-37:/layout/nav_header_main.xml",
+        "source": "com.application.dbscgcollectionmanager.app-main-40:/layout/nav_header_main.xml"
+    },
+    {
+        "merged": "com.application.dbscgcollectionmanager.app-mergeDebugResources-37:/layout/activity_main.xml",
+        "source": "com.application.dbscgcollectionmanager.app-main-40:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.application.dbscgcollectionmanager.app-mergeDebugResources-37:/layout/row.xml",
+        "source": "com.application.dbscgcollectionmanager.app-main-40:/layout/row.xml"
+    },
+    {
+        "merged": "com.application.dbscgcollectionmanager.app-mergeDebugResources-37:/layout/fragment_collection.xml",
+        "source": "com.application.dbscgcollectionmanager.app-main-40:/layout/fragment_collection.xml"
+    },
+    {
+        "merged": "com.application.dbscgcollectionmanager.app-mergeDebugResources-37:/layout/fragment_card_list.xml",
+        "source": "com.application.dbscgcollectionmanager.app-main-40:/layout/fragment_card_list.xml"
+    },
+    {
+        "merged": "com.application.dbscgcollectionmanager.app-mergeDebugResources-37:/layout/content_main.xml",
+        "source": "com.application.dbscgcollectionmanager.app-main-40:/layout/content_main.xml"
+    },
+    {
+        "merged": "com.application.dbscgcollectionmanager.app-mergeDebugResources-37:/layout/fragment_home.xml",
+        "source": "com.application.dbscgcollectionmanager.app-main-40:/layout/fragment_home.xml"
+    }
+]
