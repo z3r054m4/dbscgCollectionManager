@@ -1,8 +1,10 @@
 package com.application.dbscgcollectionmanager;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Toast;
 
 import com.application.dbscgcollectionmanager.database.DatabaseHelper;
 import com.google.android.material.snackbar.Snackbar;
@@ -17,12 +19,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.application.dbscgcollectionmanager.databinding.ActivityMainBinding;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
-
-    DatabaseHelper db = new DatabaseHelper(MainActivity.this);
+    DatabaseHelper _db = new DatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +51,17 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+        //If no data in DB, first time launching app
+        if (this._db.getAllCards().getCount() == 0) {
+            FirstStart();
+        }
+
+    }
+
+    //If first start, simply create and init all the DB
+    private void FirstStart() {
+        Toast.makeText(this, "First boot. Database initiation...", Toast.LENGTH_SHORT).show();
+        _db.addCard();
     }
 
     @Override

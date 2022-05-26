@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.application.dbscgcollectionmanager.MainActivity;
 import com.application.dbscgcollectionmanager.database.DatabaseHelper;
 import com.application.dbscgcollectionmanager.databinding.FragmentCollectionBinding;
 
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 public class SearchFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     //DB Stuff
-    private DatabaseHelper db = new DatabaseHelper(this);
+    DatabaseHelper _db = new DatabaseHelper(this);
 
     //List stuffs
     private ArrayList<String> listItem;
@@ -47,22 +48,24 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemClickL
         this.cardList = new ListView(items);
         this.cardList.setOnItemClickListener(this);*/
 
-        listAllUser();
+        listAllCards();
 
         return root;
     }
 
-    public void listAllUser() {
-        db.open();
-        Cursor cursor = db.getAllCards();
-        listItem = new ArrayList<>();
+    public void listAllCards() {
 
+        Cursor cursor = _db.getAllCards();
+
+        /*
+        listItem = new ArrayList<>();
         while (cursor.moveToNext()) {
             listItem.add(cursor.getString(1) + "\n" + cursor.getString(2));
         }
         //this.adapter = new ArrayAdapter<>(this, R.layout.row, listItem);
-        this.cardList.setAdapter(adapter);
-        db.close();
+        this.cardList.setAdapter(adapter);*/
+
+        _db.close();
     }
 
     @Override
