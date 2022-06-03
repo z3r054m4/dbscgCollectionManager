@@ -2833,12 +2833,13 @@ int id legacy 0x7f0800fa
 int id line1 0x7f0800fb
 int id line3 0x7f0800fc
 int id linear 0x7f0800fd
-int id list 0x7f0800fe
 int id listMode 0x7f0800ff
 int id list_item 0x7f080100
 int id locale 0x7f080101
 int id logoView 0x7f080102
 int id ltr 0x7f080103
+int id lv_collection 0x7f08020b
+int id lv_search 0x7f08020c
 int id masked 0x7f080104
 int id match_constraint 0x7f080105
 int id match_parent 0x7f080106
@@ -2966,6 +2967,7 @@ int id scrollIndicatorDown 0x7f08017f
 int id scrollIndicatorUp 0x7f080180
 int id scrollView 0x7f080181
 int id scrollable 0x7f080182
+int id searchList 0x7f080207
 int id search_badge 0x7f080183
 int id search_bar 0x7f080184
 int id search_button 0x7f080185
@@ -3047,7 +3049,7 @@ int id textSpacerNoTitle 0x7f0801d0
 int id textStart 0x7f0801d1
 int id textTop 0x7f0801d2
 int id textView 0x7f0801d3
-int id text_collection 0x7f0801d4
+int id text_Collection 0x7f080209
 int id text_frag_title 0x7f0801d5
 int id text_input_end_icon 0x7f0801d6
 int id text_input_error_icon 0x7f0801d7

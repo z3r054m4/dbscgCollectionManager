@@ -21,15 +21,15 @@ public final class FragmentSearchBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final ListView list;
+  public final ListView lvSearch;
 
   @NonNull
   public final TextView textSearch;
 
-  private FragmentSearchBinding(@NonNull ConstraintLayout rootView, @NonNull ListView list,
+  private FragmentSearchBinding(@NonNull ConstraintLayout rootView, @NonNull ListView lvSearch,
       @NonNull TextView textSearch) {
     this.rootView = rootView;
-    this.list = list;
+    this.lvSearch = lvSearch;
     this.textSearch = textSearch;
   }
 
@@ -60,9 +60,9 @@ public final class FragmentSearchBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.list;
-      ListView list = ViewBindings.findChildViewById(rootView, id);
-      if (list == null) {
+      id = R.id.lv_search;
+      ListView lvSearch = ViewBindings.findChildViewById(rootView, id);
+      if (lvSearch == null) {
         break missingId;
       }
 
@@ -72,7 +72,7 @@ public final class FragmentSearchBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentSearchBinding((ConstraintLayout) rootView, list, textSearch);
+      return new FragmentSearchBinding((ConstraintLayout) rootView, lvSearch, textSearch);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

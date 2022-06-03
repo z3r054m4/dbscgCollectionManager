@@ -2834,12 +2834,13 @@ id legacy
 id line1
 id line3
 id linear
-id list
 id listMode
 id list_item
 id locale
 id logoView
 id ltr
+id lv_collection
+id lv_search
 id masked
 id match_constraint
 id match_parent
@@ -2967,6 +2968,7 @@ id scrollIndicatorDown
 id scrollIndicatorUp
 id scrollView
 id scrollable
+id searchList
 id search_badge
 id search_bar
 id search_button
@@ -3048,7 +3050,7 @@ id textSpacerNoTitle
 id textStart
 id textTop
 id textView
-id text_collection
+id text_Collection
 id text_frag_title
 id text_input_end_icon
 id text_input_error_icon

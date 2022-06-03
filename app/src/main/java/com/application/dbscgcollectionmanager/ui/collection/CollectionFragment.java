@@ -10,21 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.application.dbscgcollectionmanager.databinding.FragmentCollectionBinding;
 import com.application.dbscgcollectionmanager.databinding.FragmentSearchBinding;
 
 public class CollectionFragment extends Fragment {
 
-    private FragmentSearchBinding binding;
+    private FragmentCollectionBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         CollectionViewModel collectionViewModel =
                 new ViewModelProvider(this).get(CollectionViewModel.class);
 
-        binding = FragmentSearchBinding.inflate(inflater, container, false);
+        binding = FragmentCollectionBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textSearch;
+        final TextView textView = binding.textCollection;
         collectionViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }

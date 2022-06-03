@@ -2,13 +2,11 @@ package com.application.dbscgcollectionmanager;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.widget.Toast;
 
-import com.application.dbscgcollectionmanager.database.DatabaseHelper;
-import com.google.android.material.snackbar.Snackbar;
+import com.application.dbscgcollectionmanager.database.CardsDatabase;
+import com.application.dbscgcollectionmanager.database.UserDatabase;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;
@@ -20,16 +18,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.application.dbscgcollectionmanager.databinding.ActivityMainBinding;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
-    DatabaseHelper _db = new DatabaseHelper(this);
+    UserDatabase userDatabase = new UserDatabase(this);
+    CardsDatabase cardsDatabase = new CardsDatabase(this);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,19 +49,35 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+        //Init DB and count elements
+        SQLiteDatabase sqldbUser = userDatabase.getReadableDatabase();
+        int userCardCount = this.userDatabase.getAll(sqldbUser).getCount();
+        SQLiteDatabase sqldbCards = cardsDatabase.getReadableDatabase();
+        int cardsCardCount = this.cardsDatabase.getAll(sqldbCards).getCount();
+
         //If no data in DB, first time launching app
-        SQLiteDatabase sqldb = _db.getReadableDatabase();
-        if (this._db.getAllCards(sqldb).getCount() == 0) {
-            FirstStart();
+        if ( cardsCardCount == 0) {
+            Toast.makeText(this, "First boot. Creating Databases...", Toast.LENGTH_SHORT).show();
+            String value = null;
+            String inputpath = null;
+            String outputpath = null;
+
+            new Thread(() -> {
+                try {
+
+                    cardsDatabase.Populate(value, inputpath, outputpath);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }).start();
+            Toast.makeText(this, "===================dbpath" + value, Toast.LENGTH_SHORT).show();
+
         }
-
-
-    }
-
-    //If first start, simply create and init all the DB
-    private void FirstStart() {
-        Toast.makeText(this, "First boot. Database initiation...", Toast.LENGTH_SHORT).show();
-        _db.addCard();
+        //If db has a new version: update
+        if (this.cardsDatabase.getVersion() == 2){
+            Toast.makeText(this, "Updating DB...", Toast.LENGTH_SHORT).show();
+            cardsDatabase.onUpgrade(sqldbCards, 1, 2);
+        }
     }
 
     @Override

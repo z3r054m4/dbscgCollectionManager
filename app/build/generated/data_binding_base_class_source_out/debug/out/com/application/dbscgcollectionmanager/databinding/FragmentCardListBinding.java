@@ -17,11 +17,12 @@ public final class FragmentCardListBinding implements ViewBinding {
   private final RecyclerView rootView;
 
   @NonNull
-  public final RecyclerView list;
+  public final RecyclerView searchList;
 
-  private FragmentCardListBinding(@NonNull RecyclerView rootView, @NonNull RecyclerView list) {
+  private FragmentCardListBinding(@NonNull RecyclerView rootView,
+      @NonNull RecyclerView searchList) {
     this.rootView = rootView;
-    this.list = list;
+    this.searchList = searchList;
   }
 
   @Override
@@ -51,8 +52,8 @@ public final class FragmentCardListBinding implements ViewBinding {
       throw new NullPointerException("rootView");
     }
 
-    RecyclerView list = (RecyclerView) rootView;
+    RecyclerView searchList = (RecyclerView) rootView;
 
-    return new FragmentCardListBinding((RecyclerView) rootView, list);
+    return new FragmentCardListBinding((RecyclerView) rootView, searchList);
   }
 }

@@ -4,6 +4,7 @@ package com.application.dbscgcollectionmanager.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,11 +21,15 @@ public final class FragmentCollectionBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final ListView lvCollection;
+
+  @NonNull
   public final TextView textCollection;
 
   private FragmentCollectionBinding(@NonNull ConstraintLayout rootView,
-      @NonNull TextView textCollection) {
+      @NonNull ListView lvCollection, @NonNull TextView textCollection) {
     this.rootView = rootView;
+    this.lvCollection = lvCollection;
     this.textCollection = textCollection;
   }
 
@@ -55,13 +60,20 @@ public final class FragmentCollectionBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.text_collection;
+      id = R.id.lv_collection;
+      ListView lvCollection = ViewBindings.findChildViewById(rootView, id);
+      if (lvCollection == null) {
+        break missingId;
+      }
+
+      id = R.id.text_Collection;
       TextView textCollection = ViewBindings.findChildViewById(rootView, id);
       if (textCollection == null) {
         break missingId;
       }
 
-      return new FragmentCollectionBinding((ConstraintLayout) rootView, textCollection);
+      return new FragmentCollectionBinding((ConstraintLayout) rootView, lvCollection,
+          textCollection);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
