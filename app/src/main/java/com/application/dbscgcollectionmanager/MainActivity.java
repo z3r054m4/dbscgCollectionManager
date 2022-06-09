@@ -51,24 +51,30 @@ public class MainActivity extends AppCompatActivity {
 
         //Init DB and count elements
         SQLiteDatabase sqldbUser = userDatabase.getReadableDatabase();
-        //int userCardCount = this.userDatabase.getAll(sqldbUser).getCount();
+        int userCardCount = this.userDatabase.getAll(sqldbUser).getCount();
         SQLiteDatabase sqldbCards = cardsDatabase.getReadableDatabase();
-        //int cardsCardCount = this.cardsDatabase.getAll(sqldbCards).getCount();
-        userDatabase.addCard();
-        cardsDatabase.addCard();
+        int cardsCardCount = this.cardsDatabase.getAll(sqldbCards).getCount();
 
         //If no data in DB, first time launching app
-        /*
+        if ( userCardCount == 0) {
+            Toast.makeText(this, "No user Database. Creating...", Toast.LENGTH_SHORT).show();
+            new Thread(() -> {
+                userDatabase.addCard();
+            }).start();
+        }
+
+        //If no data in DB, first time launching app
         if ( cardsCardCount == 0) {
-            Toast.makeText(this, "First boot. Creating Databases...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No cards Database. Creating...", Toast.LENGTH_SHORT).show();
             new Thread(() -> {
                 try {
-                    cardsDatabase.Populate();
+                    cardsDatabase.copyFromAsset();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }).start();
-        }*/
+        }
+
         //If db has a new version: update
     }
 

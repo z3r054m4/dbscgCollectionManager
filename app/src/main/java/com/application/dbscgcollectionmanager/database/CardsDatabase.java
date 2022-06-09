@@ -5,8 +5,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 public class CardsDatabase extends SQLiteOpenHelper {
 
@@ -80,20 +84,24 @@ public class CardsDatabase extends SQLiteOpenHelper {
     }
 
     //TODO: populate card DB
-    public void Populate() throws IOException {
+    public void copyFromAsset() throws IOException {
+        System.out.println("-----------Cpying DB");
+
         cdb = this.getWritableDatabase();
 
-        /*
-        //Open your local db as the input stream
+        //Inputs
         InputStream myinput = context.getAssets().open(DB_NAME);
-        // Path to the just created empty db
+
+        //Outputs
         String output = DB_PATH + DB_NAME;
-        //Open the empty db as the output stream
-        OutputStream myoutput = new FileOutputStream(outfilename);
-        // transfer byte to inputfile to outputfile
+        OutputStream myoutput = new FileOutputStream(output);
+
+        //Copy bytes
         byte[] buffer = new byte[1024];
         int length;
         while ((length = myinput.read(buffer))>0) {
+            System.out.println("-----------While...");
+
             myoutput.write(buffer,0,length);
         }
 
@@ -102,6 +110,6 @@ public class CardsDatabase extends SQLiteOpenHelper {
         myoutput.close();
         myinput.close();
 
-        cdb.close();*/
+        cdb.close();
     }
 }
