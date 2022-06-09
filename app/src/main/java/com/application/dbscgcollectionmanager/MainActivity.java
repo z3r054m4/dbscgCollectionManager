@@ -1,10 +1,12 @@
 package com.application.dbscgcollectionmanager;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Menu;
+import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
+import com.application.dbscgcollectionmanager.database.CardsDatabase;
+import com.application.dbscgcollectionmanager.database.UserDatabase;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;
@@ -16,10 +18,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.application.dbscgcollectionmanager.databinding.ActivityMainBinding;
 
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+    UserDatabase userDatabase = new UserDatabase(this);
+    CardsDatabase cardsDatabase = new CardsDatabase(this);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +48,28 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        //Init DB and count elements
+        SQLiteDatabase sqldbUser = userDatabase.getReadableDatabase();
+        //int userCardCount = this.userDatabase.getAll(sqldbUser).getCount();
+        SQLiteDatabase sqldbCards = cardsDatabase.getReadableDatabase();
+        //int cardsCardCount = this.cardsDatabase.getAll(sqldbCards).getCount();
+        userDatabase.addCard();
+        cardsDatabase.addCard();
+
+        //If no data in DB, first time launching app
+        /*
+        if ( cardsCardCount == 0) {
+            Toast.makeText(this, "First boot. Creating Databases...", Toast.LENGTH_SHORT).show();
+            new Thread(() -> {
+                try {
+                    cardsDatabase.Populate();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }).start();
+        }*/
+        //If db has a new version: update
     }
 
     @Override

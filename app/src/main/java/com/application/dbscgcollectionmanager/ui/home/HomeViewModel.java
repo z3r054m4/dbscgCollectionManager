@@ -1,5 +1,7 @@
 package com.application.dbscgcollectionmanager.ui.home;
 
+import android.widget.ListView;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -10,7 +12,7 @@ public class HomeViewModel extends ViewModel {
 
     public HomeViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("Collection stats");
     }
 
     public LiveData<String> getText() {

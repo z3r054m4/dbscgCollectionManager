@@ -10,10 +10,11 @@ public class SearchViewModel extends ViewModel {
 
     public SearchViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is Search fragment");
+        mText.setValue("Search for cards");
     }
 
     public LiveData<String> getText() {
         return mText;
     }
+
 }
