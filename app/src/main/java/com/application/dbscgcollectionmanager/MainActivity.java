@@ -57,21 +57,15 @@ public class MainActivity extends AppCompatActivity {
 
         //If no data in DB, first time launching app
         if ( cardsCardCount == 0) {
-            Toast.makeText(this, "First boot. Creating Databases...", Toast.LENGTH_SHORT).show();
-            String value = null;
-            String inputpath = null;
-            String outputpath = null;
+            Toast.makeText(this, "First boot. Creating master Databases...", Toast.LENGTH_SHORT).show();
 
             new Thread(() -> {
                 try {
-
-                    cardsDatabase.Populate(value, inputpath, outputpath);
+                    cardsDatabase.Populate();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }).start();
-            Toast.makeText(this, "===================dbpath" + value, Toast.LENGTH_SHORT).show();
-
         }
         //If db has a new version: update
         if (this.cardsDatabase.getVersion() == 2){

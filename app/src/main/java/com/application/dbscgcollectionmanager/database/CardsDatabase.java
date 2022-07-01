@@ -6,9 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import androidx.annotation.Nullable;
-
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,7 +15,7 @@ public class CardsDatabase extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "dbscg_cards.sqlite";
     private static final String ASSETS = "databases";
-    private static final String TABLE = "cards";
+    private static final String TABLE = "dbsCards";
     private static String DB_PATH = "/data/data/com.application.dbscgcollectionmanager/databases/";
     private static final int DB_VERSION = 1;
 
@@ -127,25 +124,15 @@ public class CardsDatabase extends SQLiteOpenHelper {
         return res;
     }
 
-    public String Populate(String value, String input, output) throws IOException {
+    public void Populate() throws IOException {
         cdb = this.getWritableDatabase();
 
-        value = String.valueOf(context.getAssets().open(asset+DB_NAME));
-        input = String.valueOf(context.getAssets().open(asset+DB_NAME));
-        output = DB_PATH + DB_NAME;
-
-
-        return {value, input, output};
-    }
-
-
-    /*
-           //Open your local db as the input stream
+        //Open your local db as the input stream
         InputStream myinput = context.getAssets().open(DB_NAME);
         // Path to the just created empty db
         String output = DB_PATH + DB_NAME;
         //Open the empty db as the output stream
-        OutputStream myoutput = new FileOutputStream(outfilename);
+        OutputStream myoutput = new FileOutputStream(output);
         // transfer byte to inputfile to outputfile
         byte[] buffer = new byte[1024];
         int length;
@@ -159,5 +146,5 @@ public class CardsDatabase extends SQLiteOpenHelper {
         myinput.close();
 
         cdb.close();
-     */
+    }
 }
