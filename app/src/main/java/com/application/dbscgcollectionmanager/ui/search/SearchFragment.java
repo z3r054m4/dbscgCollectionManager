@@ -63,7 +63,7 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemClickL
 
         listItem = new ArrayList<>();
         while (c.moveToNext()) {
-            listItem.add(c.getString(1) + "\n" + c.getString(2));
+            listItem.add(c.getString(1) + " - " + c.getString(2));
         }
         this.adapter = new ArrayAdapter(getActivity(), R.layout.row, listItem);
         lv.setAdapter(adapter);

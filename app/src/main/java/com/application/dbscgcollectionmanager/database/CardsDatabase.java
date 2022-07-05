@@ -85,8 +85,6 @@ public class CardsDatabase extends SQLiteOpenHelper {
 
     //TODO: populate card DB
     public void copyFromAsset() throws IOException {
-        System.out.println("-----------Cpying DB");
-
         cdb = this.getWritableDatabase();
 
         //Inputs
@@ -100,8 +98,6 @@ public class CardsDatabase extends SQLiteOpenHelper {
         byte[] buffer = new byte[1024];
         int length;
         while ((length = myinput.read(buffer))>0) {
-            System.out.println("-----------While...");
-
             myoutput.write(buffer,0,length);
         }
 
